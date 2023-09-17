@@ -44,7 +44,6 @@ protected:
 	void RightNote(const FInputActionValue& Value);
 
 	void HoldNote(const FInputActionValue& Value);
-
 	
 public:
 	// Called to bind functionality to input

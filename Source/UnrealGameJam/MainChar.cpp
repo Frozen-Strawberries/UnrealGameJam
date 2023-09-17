@@ -3,6 +3,7 @@
 #include "EnhancedInputComponent.h"
 #include "Camera/CameraComponent.h"
 #include "Components/CapsuleComponent.h"
+#include "EnhancedInputSubsystems.h"
 
 AMainChar::AMainChar()
 {
@@ -16,6 +17,15 @@ AMainChar::AMainChar()
 void AMainChar::BeginPlay()
 {
 	Super::BeginPlay();
+
+	if (APlayerController* PlayerController = Cast<APlayerController>(Controller))
+	{
+		if (UEnhancedInputLocalPlayerSubsystem* Subsystem =
+			ULocalPlayer::GetSubsystem<UEnhancedInputLocalPlayerSubsystem>(PlayerController->GetLocalPlayer()))
+		{
+			Subsystem->AddMappingContext(PlayerMappingContext, 0);
+		}
+	}
 }
 
 void AMainChar::MidNote(const FInputActionValue& Value)
