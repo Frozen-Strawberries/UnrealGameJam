@@ -30,16 +30,50 @@ void AMainChar::BeginPlay()
 
 void AMainChar::MidNote(const FInputActionValue& Value)
 {
-	GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Red, TEXT("Button pressed"));
+	if (BoolHitModifier)
+	{
+		GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Blue, TEXT("Shift + W pressed"));
+	}
+	else
+	{
+		GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Blue, TEXT("W pressed"));
+	}
 }
 void AMainChar::LeftNote(const FInputActionValue& Value)
 {
-	GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Red, TEXT("Button pressed"));
+	if (BoolHitModifier)
+	{
+		GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Blue, TEXT("Shift + Q pressed"));
+	}
+	else
+	{
+		GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Blue, TEXT("Q pressed"));
+	}
 }
 
 void AMainChar::RightNote(const FInputActionValue& Value)
 {
-	GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Red, TEXT("Button pressed"));
+	if (BoolHitModifier)
+	{
+		GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Blue, TEXT("Shift + E pressed"));
+	}
+	else
+	{
+		GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Blue, TEXT("E pressed"));
+	}
+}
+
+void AMainChar::HitNoteModifier(const FInputActionValue& Value)
+{
+	GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Green, TEXT("SHIFT pressed"));
+	BoolHitModifier = true;
+
+}
+
+void AMainChar::EndHitNoteModifier(const FInputActionValue& Value)
+{
+	GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Black, TEXT("SHIFT released"));
+	BoolHitModifier = false;
 }
 
 void AMainChar::HoldNote(const FInputActionValue& Value)
@@ -60,6 +94,8 @@ void AMainChar::SetupPlayerInputComponent(UInputComponent* PlayerInputComponent)
 		EnhancedInputComponent->BindAction(RightHit, ETriggerEvent::Triggered, this, &AMainChar::RightNote);
 		// ONGOING EVENT FOR HOLDNOTE
 		
+		EnhancedInputComponent->BindAction(HitModifier, ETriggerEvent::Ongoing, this, &AMainChar::HitNoteModifier);
+		EnhancedInputComponent->BindAction(HitModifier, ETriggerEvent::None, this, &AMainChar::EndHitNoteModifier);
 	}
 }
 
