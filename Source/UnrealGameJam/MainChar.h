@@ -16,6 +16,9 @@ class UNREALGAMEJAM_API AMainChar : public ACharacter
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, meta = (AllowPrivateAccess = "true"))
 	TObjectPtr<UCameraComponent> _Camera;
 
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, meta = (AllowPrivateAccess = "true"))
+	bool BoolHitModifier;
+	
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category=TexCreate_InputAttachmentRead, meta =(AllowPrivateAccess = "true"))
 	UInputMappingContext* PlayerMappingContext;
 
@@ -27,6 +30,10 @@ class UNREALGAMEJAM_API AMainChar : public ACharacter
 
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category=TexCreate_InputAttachmentRead, meta =(AllowPrivateAccess = "true"))
 	UInputAction* RightHit;
+
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category=TexCreate_InputAttachmentRead, meta =(AllowPrivateAccess = "true"))
+	UInputAction* HitModifier;
+
 	
 public:
 	// Sets default values for this character's properties
@@ -42,7 +49,8 @@ protected:
 	void MidNote(const FInputActionValue& Value);
 	void LeftNote(const FInputActionValue& Value);
 	void RightNote(const FInputActionValue& Value);
-
+	void HitNoteModifier(const FInputActionValue& Value);
+	void EndHitNoteModifier(const FInputActionValue& Value);
 	void HoldNote(const FInputActionValue& Value);
 	
 public:
