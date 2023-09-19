@@ -41,11 +41,8 @@ public:
 
 protected:
 	// Called when the game starts or when spawned
-
-	
-	
 	virtual void BeginPlay() override;
-
+	
 	void MidNote(const FInputActionValue& Value);
 	void LeftNote(const FInputActionValue& Value);
 	void RightNote(const FInputActionValue& Value);
