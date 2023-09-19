@@ -65,14 +65,14 @@ void AMainChar::RightNote(const FInputActionValue& Value)
 
 void AMainChar::HitNoteModifier(const FInputActionValue& Value)
 {
-	GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Green, TEXT("SHIFT pressed"));
+	//GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Green, TEXT("SHIFT pressed"));
 	BoolHitModifier = true;
 
 }
 
 void AMainChar::EndHitNoteModifier(const FInputActionValue& Value)
 {
-	GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Black, TEXT("SHIFT released"));
+	//GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Black, TEXT("SHIFT released"));
 	BoolHitModifier = false;
 }
 
