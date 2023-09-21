@@ -3,6 +3,8 @@
 
 #include "MusicNoteCollector.h"
 
+#include <asio/1.12.2/asio/detail/fd_set_adapter.hpp>
+
 #include "MainChar.h"
 #include "Chaos/GeometryParticlesfwd.h"
 
@@ -68,6 +70,7 @@ float AMusicNoteCollector::HitNote()
 
 	GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::White, TEXT("HIT NOTE"));
 
+	AActor* Parent = GetParentActor();
 	FVector PlayerPosition = GetParentActor()->GetActorLocation();
 	AActor* Note = AvailableNotes.Pop(true);
 	FVector NotePosition = Note->GetActorLocation();
