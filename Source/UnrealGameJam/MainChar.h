@@ -66,4 +66,13 @@ public:
 
 	UFUNCTION(BlueprintImplementableEvent)
 	void HitE();
+
+	UFUNCTION(BlueprintImplementableEvent)
+	void HitQShift();
+
+	UFUNCTION(BlueprintImplementableEvent)
+	void HitWShift();
+
+	UFUNCTION(BlueprintImplementableEvent)
+	void HitEShift();
 };

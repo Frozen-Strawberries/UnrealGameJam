@@ -21,15 +21,15 @@ class UNREALGAMEJAM_API AMusicNoteCollector : public AActor
 	TObjectPtr<UStaticMeshComponent> NoteOutline;
 
 	//Note hit vars
-	
+
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category="NoteDetails", meta = (AllowPrivateAccess = "true"))
 	TObjectPtr<UBoxComponent> NoteHitCollider;
-	
+
 	/*UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category="NoteDetails", meta = (AllowPrivateAccess = "true"))
 	FVector NoteHitPosition;*/
 
 	//Note miss vars
-	
+
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category="NoteDetails", meta = (AllowPrivateAccess = "true"))
 	TObjectPtr<UBoxComponent> NoteMissCollider;
 
@@ -40,7 +40,7 @@ class UNREALGAMEJAM_API AMusicNoteCollector : public AActor
 
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category="NoteDetails", meta=(AllowPrivateAccess = "true"))
 	TArray<AActor*> AvailableNotes;
-	
+
 public:
 	// Sets default values for this actor's properties
 	AMusicNoteCollector();
@@ -61,8 +61,9 @@ public:
 	// Called every frame
 	//virtual void Tick(float DeltaTime) override;
 
-	//Possible BlueprintNativeEvent for sending scores?
 	UFUNCTION(BlueprintCallable)
-	float HitNote();
-	//virtual void OnBeginOverlap 
+	void HitNote(float &score_out, FVector &location_out);
+
+	/*UFUNCTION(Blueprint)
+	void DestroyNote(AActor* NoteToDestroy);*/
 };
