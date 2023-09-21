@@ -59,6 +59,7 @@ void AMainChar::MidNote(const FInputActionValue& Value)
 	{
 		/*AMusicNoteCollector* W = Cast<AMusicNoteCollector>(WCollector->GetChildActor());
 		W->HitNote();*/
+		HitW();
 		GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Blue, TEXT("W pressed"));
 	}
 }

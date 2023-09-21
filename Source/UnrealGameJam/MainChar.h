@@ -34,14 +34,14 @@ class UNREALGAMEJAM_API AMainChar : public ACharacter
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category=TexCreate_InputAttachmentRead, meta =(AllowPrivateAccess = "true"))
 	UInputAction* HitModifier;
 
-	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category="NoteColliders", meta=(AllowPrivateAccess = true))
+	/*UPROPERTY(EditAnywhere, BlueprintReadWrite, Category="NoteColliders", meta=(AllowPrivateAccess = true))
 	TObjectPtr<UChildActorComponent> QCollector;
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category="NoteColliders", meta=(AllowPrivateAccess = true))
 	TObjectPtr<UChildActorComponent> WCollector;
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category="NoteColliders", meta=(AllowPrivateAccess = true))
-	TObjectPtr<UChildActorComponent> ECollector;
+	TObjectPtr<UChildActorComponent> ECollector;*/
 
 	
 public:
@@ -63,4 +63,6 @@ public:
 	// Called to bind functionality to input
 	virtual void SetupPlayerInputComponent(class UInputComponent* PlayerInputComponent) override;
 
+	UFUNCTION(BlueprintImplementableEvent)
+	void HitW();
 };

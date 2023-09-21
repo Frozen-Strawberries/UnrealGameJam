@@ -62,7 +62,7 @@ public:
 	//virtual void Tick(float DeltaTime) override;
 
 	//Possible BlueprintNativeEvent for sending scores?
-	UFUNCTION()
+	UFUNCTION(BlueprintCallable)
 	float HitNote();
 	//virtual void OnBeginOverlap 
 };

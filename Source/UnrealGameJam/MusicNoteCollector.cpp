@@ -3,6 +3,7 @@
 
 #include "MusicNoteCollector.h"
 
+#include "MainChar.h"
 #include "Chaos/GeometryParticlesfwd.h"
 
 // Sets default values
@@ -60,7 +61,6 @@ void AMusicNoteCollector::BeginOverlap(UPrimitiveComponent* OverlappedComponent,
 
 float AMusicNoteCollector::HitNote()
 {
-	//TODO: Calculate note tolerances
 	if (AvailableNotes.Num() <= 0)
 	{
 		return 0.f;
@@ -72,9 +72,24 @@ float AMusicNoteCollector::HitNote()
 	AActor* Note = AvailableNotes.Pop(true);
 	FVector NotePosition = Note->GetActorLocation();
 	float distanceFromOutline = (NotePosition - PlayerPosition).Length();
-	Note->Destroy();
-
 	float score = 0.f;
+
+	if(distanceFromOutline >= 300.f) //okay
+	{
+		score = 25.f;
+	}
+	else if(distanceFromOutline >= 100.f && distanceFromOutline < 300.f) //great
+	{
+		score = 50.f;
+	}
+	else if(distanceFromOutline < 100.f) //perfect
+	{
+		score = 100.0f;
+	}
+
+	//TODO: do some fun note vfx instead :)
+	Note->Destroy();
+	
 	return score;
 }
 
