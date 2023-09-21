@@ -5,6 +5,7 @@
 #include "Components/CapsuleComponent.h"
 #include "EnhancedInputSubsystems.h"
 #include "MusicNoteCollector.h"
+#include "Components/SkeletalMeshComponent.h"
 
 AMainChar::AMainChar()
 {
@@ -38,6 +39,7 @@ void AMainChar::LeftNote(const FInputActionValue& Value)
 	}
 	else
 	{
+		GetMesh()->SetRelativeLocation(FVector(0.f, -200.f, 0.f));
 		HitQ();
 		//GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Blue, TEXT("Q pressed"));
 	}
@@ -52,6 +54,7 @@ void AMainChar::MidNote(const FInputActionValue& Value)
 	}
 	else
 	{
+		GetMesh()->SetRelativeLocation(FVector(0.f, 0.f, 0.f));
 		HitW();
 		//GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Blue, TEXT("W pressed"));
 	}
@@ -66,6 +69,7 @@ void AMainChar::RightNote(const FInputActionValue& Value)
 	}
 	else
 	{
+		GetMesh()->SetRelativeLocation(FVector(0.f, 200.f, 0.f));
 		HitE();
 		//GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Blue, TEXT("E pressed"));
 	}
@@ -83,6 +87,7 @@ void AMainChar::EndHitNoteModifier(const FInputActionValue& Value)
 
 void AMainChar::HoldNote(const FInputActionValue& Value)
 {
+
 }
 
 void AMainChar::SetupPlayerInputComponent(UInputComponent* PlayerInputComponent)
