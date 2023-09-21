@@ -13,26 +13,6 @@ AMainChar::AMainChar()
 	_Camera = CreateDefaultSubobject<UCameraComponent>(TEXT("Camera"));
 	_Camera->SetupAttachment(GetCapsuleComponent());
 	_Camera->SetRelativeLocation(FVector(-380.f, 0.f, 150.f));
-
-	//TODO: Cast at the beginning to prevent casting per note click
-	/*//Note Collectors
-	QCollector = CreateDefaultSubobject<UChildActorComponent>(TEXT("Q Collector"));
-	QCollector->SetupAttachment(GetCapsuleComponent());
-	QCollector->SetChildActorClass(AMusicNoteCollector::StaticClass());
-	QCollector->CreateChildActor();
-	//Collector->SetRelativeLocation(FVector(250.0f, -200.f, 0.f));
-	
-	WCollector = CreateDefaultSubobject<UChildActorComponent>(TEXT("W Collector"));
-	WCollector->SetupAttachment(GetCapsuleComponent());
-	WCollector->SetChildActorClass(AMusicNoteCollector::StaticClass());
-	WCollector->CreateChildActor();
-	//WCollector->SetRelativeLocation(FVector(250.0f, 0.f, 0.f));
-
-	ECollector = CreateDefaultSubobject<UChildActorComponent>(TEXT("E Collector"));
-	ECollector->SetupAttachment(GetCapsuleComponent());
-	ECollector->SetChildActorClass(AMusicNoteCollector::StaticClass());
-	ECollector->CreateChildActor();
-	//ECollector->SetRelativeLocation(FVector(250.0f, 200.f, 0.f));*/
 }
 
 void AMainChar::BeginPlay()
@@ -49,21 +29,6 @@ void AMainChar::BeginPlay()
 	}
 }
 
-void AMainChar::MidNote(const FInputActionValue& Value)
-{
-	if (BoolHitModifier)
-	{
-		GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Blue, TEXT("Shift + W pressed"));
-	}
-	else
-	{
-		/*AMusicNoteCollector* W = Cast<AMusicNoteCollector>(WCollector->GetChildActor());
-		W->HitNote();*/
-		HitW();
-		GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Blue, TEXT("W pressed"));
-	}
-}
-
 void AMainChar::LeftNote(const FInputActionValue& Value)
 {
 	if (BoolHitModifier)
@@ -72,9 +37,21 @@ void AMainChar::LeftNote(const FInputActionValue& Value)
 	}
 	else
 	{
-		/*AMusicNoteCollector* Q = Cast<AMusicNoteCollector>(WCollector->GetChildActor());
-		Q->HitNote();*/
+		HitQ();
 		GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Blue, TEXT("Q pressed"));
+	}
+}
+
+void AMainChar::MidNote(const FInputActionValue& Value)
+{
+	if (BoolHitModifier)
+	{
+		GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Blue, TEXT("Shift + W pressed"));
+	}
+	else
+	{
+		HitW();
+		GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Blue, TEXT("W pressed"));
 	}
 }
 
@@ -86,8 +63,7 @@ void AMainChar::RightNote(const FInputActionValue& Value)
 	}
 	else
 	{
-		/*AMusicNoteCollector* E = Cast<AMusicNoteCollector>(WCollector->GetChildActor());
-		E->HitNote();*/
+		HitE();
 		GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Blue, TEXT("E pressed"));
 	}
 }

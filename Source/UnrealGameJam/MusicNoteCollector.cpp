@@ -2,9 +2,7 @@
 
 
 #include "MusicNoteCollector.h"
-
 #include "MainChar.h"
-#include "Chaos/GeometryParticlesfwd.h"
 
 // Sets default values
 AMusicNoteCollector::AMusicNoteCollector()
@@ -53,7 +51,7 @@ void AMusicNoteCollector::BeginOverlap(UPrimitiveComponent* OverlappedComponent,
 
 	if (OverlappedComponent == NoteMissCollider)
 	{
-		GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Turquoise, TEXT("Note Missed"));
+		//GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Turquoise, TEXT("Note Missed"));
 		AvailableNotes.Remove(OtherActor);
 		OtherActor->Destroy();
 	}
@@ -67,22 +65,22 @@ float AMusicNoteCollector::HitNote()
 	}
 
 	GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::White, TEXT("HIT NOTE"));
-
-	FVector PlayerPosition = GetParentActor()->GetActorLocation();
+	
+	FVector OutlinePosition = NoteOutline->GetComponentLocation();
 	AActor* Note = AvailableNotes.Pop(true);
 	FVector NotePosition = Note->GetActorLocation();
-	float distanceFromOutline = (NotePosition - PlayerPosition).Length();
+	float distanceFromOutline = (NotePosition - OutlinePosition).Length();
 	float score = 0.f;
 
-	if(distanceFromOutline >= 300.f) //okay
+	if(distanceFromOutline >= 500.f) //okay
 	{
 		score = 25.f;
 	}
-	else if(distanceFromOutline >= 100.f && distanceFromOutline < 300.f) //great
+	else if(distanceFromOutline >= 200.f && distanceFromOutline < 499.f) //great
 	{
 		score = 50.f;
 	}
-	else if(distanceFromOutline < 100.f) //perfect
+	else if(distanceFromOutline < 250.f) //perfect
 	{
 		score = 100.0f;
 	}
