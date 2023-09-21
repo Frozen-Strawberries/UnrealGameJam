@@ -14,29 +14,31 @@ class UNREALGAMEJAM_API AMusicNoteCollector : public AActor
 
 	//General note vars
 
-	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, meta = (AllowPrivateAccess = "true"))
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category="NoteDetails", meta = (AllowPrivateAccess = "true"))
 	TObjectPtr<USceneComponent> _Root;
 
-	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category="NoteDetails", meta = (AllowPrivateAccess = "true"))
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category="NoteDetails", meta = (AllowPrivateAccess = "true"))
 	TObjectPtr<UStaticMeshComponent> NoteOutline;
 
 	//Note hit vars
 	
-	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category="NoteDetails", meta = (AllowPrivateAccess = "true"))
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category="NoteDetails", meta = (AllowPrivateAccess = "true"))
 	TObjectPtr<UBoxComponent> NoteHitCollider;
 	
-	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category="NoteDetails", meta = (AllowPrivateAccess = "true"))
-	FVector NoteHitPosition;
+	/*UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category="NoteDetails", meta = (AllowPrivateAccess = "true"))
+	FVector NoteHitPosition;*/
 
 	//Note miss vars
 	
-	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category="NoteDetails", meta = (AllowPrivateAccess = "true"))
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category="NoteDetails", meta = (AllowPrivateAccess = "true"))
 	TObjectPtr<UBoxComponent> NoteMissCollider;
 
+	/*
 	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category="NoteDetails", meta = (AllowPrivateAccess = "true"))
 	FVector NoteMissPosition;
+	*/
 
-	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category="NoteDetails", meta=(AllowPrivateAccess = "true"))
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category="NoteDetails", meta=(AllowPrivateAccess = "true"))
 	TArray<AActor*> AvailableNotes;
 	
 public:
