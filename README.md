@@ -10,6 +10,7 @@ A 3D Rhythm Game made for the [2023 Epic MegaJam!](https://itch.io/jam/2023-epic
 James worked on:
 - Input
 - Main character
+- VFX
 
 ### Issac
 [Website](https://gamerize.github.io/issacwai.github.io/)
