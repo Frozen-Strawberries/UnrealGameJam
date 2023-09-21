@@ -38,6 +38,7 @@ void AMainChar::LeftNote(const FInputActionValue& Value)
 	}
 	else
 	{
+		GetMesh()->SetRelativeLocation(FVector(0.f, -200.f, -100.f));
 		HitQ();
 		//GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Blue, TEXT("Q pressed"));
 	}
@@ -52,6 +53,7 @@ void AMainChar::MidNote(const FInputActionValue& Value)
 	}
 	else
 	{
+		GetMesh()->SetRelativeLocation(FVector(0.f, 0.f, -100.f));
 		HitW();
 		//GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Blue, TEXT("W pressed"));
 	}
@@ -66,6 +68,7 @@ void AMainChar::RightNote(const FInputActionValue& Value)
 	}
 	else
 	{
+		GetMesh()->SetRelativeLocation(FVector(0.f, 200.f, -100.f));
 		HitE();
 		//GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Blue, TEXT("E pressed"));
 	}

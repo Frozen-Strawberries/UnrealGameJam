@@ -59,6 +59,8 @@ void AMusicNoteCollector::HitNote(float &score_out, FVector &location_out)
 {
 	if (AvailableNotes.Num() <= 0)
 	{
+		score_out = 0.f;
+		location_out = FVector(0.f, 0.f, 0.f);
 		return;
 	}
 
