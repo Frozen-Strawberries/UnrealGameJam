@@ -34,8 +34,6 @@ AMusicNoteCollector::AMusicNoteCollector()
 // Called when the game starts or when spawned
 void AMusicNoteCollector::BeginPlay()
 {
-	/*NoteHitCollider->SetRelativeLocation(NoteHitPosition);
-	NoteMissCollider->SetRelativeLocation(NoteMissPosition);*/
 	Super::BeginPlay();
 }
 
@@ -45,7 +43,7 @@ void AMusicNoteCollector::BeginOverlap(UPrimitiveComponent* OverlappedComponent,
 {
 	if (OverlappedComponent == NoteHitCollider)
 	{
-		GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Yellow, TEXT("Can collide with note"));
+		//GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Yellow, TEXT("Can collide with note"));
 		AvailableNotes.Add(OtherActor);
 	}
 
@@ -57,14 +55,16 @@ void AMusicNoteCollector::BeginOverlap(UPrimitiveComponent* OverlappedComponent,
 	}
 }
 
-float AMusicNoteCollector::HitNote()
+void AMusicNoteCollector::HitNote(float &score_out, FVector &location_out)
 {
 	if (AvailableNotes.Num() <= 0)
 	{
-		return 0.f;
+		score_out = 0.f;
+		location_out = FVector(0.f, 0.f, 0.f);
+		return;
 	}
 
-	GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::White, TEXT("HIT NOTE"));
+	//GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::White, TEXT("HIT NOTE"));
 	
 	FVector OutlinePosition = NoteOutline->GetComponentLocation();
 	AActor* Note = AvailableNotes.Pop(true);
@@ -84,17 +84,9 @@ float AMusicNoteCollector::HitNote()
 	{
 		score = 100.0f;
 	}
-
-	//TODO: do some fun note vfx instead :)
-	Note->Destroy();
 	
-	return score;
+	Note->Destroy();
+	score_out = score;
+	location_out = NotePosition;
 }
 
-// Called every frame
-/*
-void AMusicNoteCollector::Tick(float DeltaTime)
-{
-	Super::Tick(DeltaTime);
-}
-*/

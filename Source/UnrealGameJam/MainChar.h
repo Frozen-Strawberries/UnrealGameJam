@@ -18,7 +18,7 @@ class UNREALGAMEJAM_API AMainChar : public ACharacter
 
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, meta = (AllowPrivateAccess = "true"))
 	bool BoolHitModifier;
-
+	
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category=TexCreate_InputAttachmentRead,
 		meta =(AllowPrivateAccess = "true"))
 	UInputMappingContext* PlayerMappingContext;
@@ -66,4 +66,13 @@ public:
 
 	UFUNCTION(BlueprintImplementableEvent)
 	void HitE();
+
+	UFUNCTION(BlueprintImplementableEvent)
+	void HitQShift();
+
+	UFUNCTION(BlueprintImplementableEvent)
+	void HitWShift();
+
+	UFUNCTION(BlueprintImplementableEvent)
+	void HitEShift();
 };
