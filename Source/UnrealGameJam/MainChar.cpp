@@ -13,6 +13,10 @@ AMainChar::AMainChar()
 	_Camera = CreateDefaultSubobject<UCameraComponent>(TEXT("Camera"));
 	_Camera->SetupAttachment(GetCapsuleComponent());
 	_Camera->SetRelativeLocation(FVector(-380.f, 0.f, 150.f));
+
+	/*BikeMesh = CreateDefaultSubobject<UStaticMeshComponent>(TEXT("Bike Mesh"));
+	BikeMesh->SetupAttachment(_Camera);
+	BikeMesh->SetRelativeRotation(FRotator(0.f, 0.f, 180.f));*/
 }
 
 void AMainChar::BeginPlay()
@@ -33,12 +37,14 @@ void AMainChar::LeftNote(const FInputActionValue& Value)
 {
 	if (BoolHitModifier)
 	{
-		GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Blue, TEXT("Shift + Q pressed"));
+		HitQShift();
+		//GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Blue, TEXT("Shift + Q pressed"));
 	}
 	else
 	{
+		GetMesh()->SetRelativeLocation(FVector(0.f, -200.f, 0.f));
 		HitQ();
-		GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Blue, TEXT("Q pressed"));
+		//GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Blue, TEXT("Q pressed"));
 	}
 }
 
@@ -46,12 +52,14 @@ void AMainChar::MidNote(const FInputActionValue& Value)
 {
 	if (BoolHitModifier)
 	{
-		GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Blue, TEXT("Shift + W pressed"));
+		HitWShift();
+		//GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Blue, TEXT("Shift + W pressed"));
 	}
 	else
 	{
+		GetMesh()->SetRelativeLocation(FVector(0.f, 0.f, 0.f));
 		HitW();
-		GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Blue, TEXT("W pressed"));
+		//GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Blue, TEXT("W pressed"));
 	}
 }
 
@@ -59,24 +67,24 @@ void AMainChar::RightNote(const FInputActionValue& Value)
 {
 	if (BoolHitModifier)
 	{
-		GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Blue, TEXT("Shift + E pressed"));
+		HitEShift();
+		//GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Blue, TEXT("Shift + E pressed"));
 	}
 	else
 	{
+		GetMesh()->SetRelativeLocation(FVector(0.f, 200.f, 0.f));
 		HitE();
-		GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Blue, TEXT("E pressed"));
+		//GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Blue, TEXT("E pressed"));
 	}
 }
 
 void AMainChar::HitNoteModifier(const FInputActionValue& Value)
 {
-	//GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Green, TEXT("SHIFT pressed"));
 	BoolHitModifier = true;
 }
 
 void AMainChar::EndHitNoteModifier(const FInputActionValue& Value)
 {
-	//GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Black, TEXT("SHIFT released"));
 	BoolHitModifier = false;
 }
 
