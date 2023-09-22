@@ -72,15 +72,15 @@ void AMusicNoteCollector::HitNote(float &score_out, FVector &location_out)
 	float distanceFromOutline = (NotePosition - OutlinePosition).Length();
 	float score = 0.f;
 
-	if(distanceFromOutline >= 500.f) //okay
+	if(distanceFromOutline >= 350.f) //okay
 	{
 		score = 25.f;
 	}
-	else if(distanceFromOutline >= 200.f && distanceFromOutline < 499.f) //great
+	else if(distanceFromOutline >= 150.f && distanceFromOutline < 350.f) //great
 	{
 		score = 50.f;
 	}
-	else if(distanceFromOutline < 250.f) //perfect
+	else if(distanceFromOutline < 150.f) //perfect
 	{
 		score = 100.0f;
 	}
