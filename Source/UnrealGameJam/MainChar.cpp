@@ -13,6 +13,10 @@ AMainChar::AMainChar()
 	_Camera = CreateDefaultSubobject<UCameraComponent>(TEXT("Camera"));
 	_Camera->SetupAttachment(GetCapsuleComponent());
 	_Camera->SetRelativeLocation(FVector(-380.f, 0.f, 150.f));
+
+	/*BikeMesh = CreateDefaultSubobject<UStaticMeshComponent>(TEXT("Bike Mesh"));
+	BikeMesh->SetupAttachment(_Camera);
+	BikeMesh->SetRelativeRotation(FRotator(0.f, 0.f, 180.f));*/
 }
 
 void AMainChar::BeginPlay()
@@ -38,7 +42,7 @@ void AMainChar::LeftNote(const FInputActionValue& Value)
 	}
 	else
 	{
-		GetMesh()->SetRelativeLocation(FVector(0.f, -200.f, -100.f));
+		GetMesh()->SetRelativeLocation(FVector(0.f, -200.f, 0.f));
 		HitQ();
 		//GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Blue, TEXT("Q pressed"));
 	}
@@ -53,7 +57,7 @@ void AMainChar::MidNote(const FInputActionValue& Value)
 	}
 	else
 	{
-		GetMesh()->SetRelativeLocation(FVector(0.f, 0.f, -100.f));
+		GetMesh()->SetRelativeLocation(FVector(0.f, 0.f, 0.f));
 		HitW();
 		//GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Blue, TEXT("W pressed"));
 	}
@@ -68,7 +72,7 @@ void AMainChar::RightNote(const FInputActionValue& Value)
 	}
 	else
 	{
-		GetMesh()->SetRelativeLocation(FVector(0.f, 200.f, -100.f));
+		GetMesh()->SetRelativeLocation(FVector(0.f, 200.f, 0.f));
 		HitE();
 		//GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Blue, TEXT("E pressed"));
 	}
